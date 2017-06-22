@@ -4,13 +4,15 @@
 	<title>In Widget</title>
 	<script type="text/javascript">
 		function add(){
+			let text = document.getElementById('ingred').value;
+			console.log('text',text)
+			window.add(text);
 			console.log('gr8');
 		}
 	</script>
 </head>
 <body>
-<input type="textbox" name="" />
+<input id='ingred' type="textbox" name="" />
 <input type="button" name="" onclick="add()" />
-<button type="Submit">Submit</button>
 </body>
 </html>
