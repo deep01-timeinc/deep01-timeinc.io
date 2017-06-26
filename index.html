@@ -8,14 +8,19 @@
 			let label = document.createElement('div');
 			var t = document.createTextNode(text);
 			label.appendChild(t);
-			document.body.appendChild(label);
+			document.getElementById('widget').appendChild(label);
 			// console.log('gr8');
 		}
 	</script>
 	<link rel="stylesheet" type="text/css" href="./styles.css">
 </head>
 <body id='container'>
-<input id='ingred' type="textbox" name="" />
-<input type="button" name="" onclick="add()" value="Add" />
+<div id='widget'>
+<div id='title'>Ingredient widget</div>
+<div style="display: flex; justify-content: center;">
+<input id='ingred' type="textbox" />
+<div class='button' onclick="add()">ADD INGREDIENT</div>
+</div>
+</div>
 </body>
 </html>
