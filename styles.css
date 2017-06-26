@@ -37,5 +37,13 @@
 	border-radius: 4px;
 	color: #888888;
 }
+.buy{
+	color: #ffffff;
+}
+.item{
+	font-size: 15px;
+	display: flex;
+	justify-content: space-between;
+}
 
 /*2874f0*/

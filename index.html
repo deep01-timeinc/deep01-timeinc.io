@@ -13,6 +13,7 @@
 			var t = document.createTextNode(text);
 			label.appendChild(t);
 			document.getElementById('widget').appendChild(label);
+			label.className = 'item'
 			fetchPrices(label);
 		}
 		function fetchPrices(element){
@@ -22,13 +23,14 @@
 		     		var response = this.responseText;
 		     		var json = JSON.parse(response);
 		     		var price = json.uk.ghs.products.results[0].price;
-		     		var unitOfSale = json.uk.ghs.products.results[0].UnitOfSale;
-		     		var unitQuantity = json.uk.ghs.products.results[0].UnitQuantity;
+		     		var unitOfSale = json.uk.ghs.products.results[0].ContentsQuantity;
+		     		var unitQuantity = json.uk.ghs.products.results[0].ContentsMeasureType;
 
 		     		var buyDiv = document.createElement('div');
 					var buyText = document.createTextNode('Buy it here at £'+price+'/'+(unitOfSale > 1 ? unitOfSale : '')+unitQuantity);
 					buyDiv.appendChild(buyText);
 					element.appendChild(buyDiv);
+					buyDiv.className = 'buy';
 
 		     		// https://www.tesco.com/groceries/product/search/default.aspx?searchBox=cabbage&newSort=true&search=Search
 				}
