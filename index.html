@@ -4,20 +4,47 @@
 	<title>In Widget</title>
 	<script type="text/javascript">
 		function add(){
-			let text = document.getElementById('ingred').value;
-			let label = document.createElement('div');
+			var text = document.getElementById('ingred').value;
+			if(text == ''){
+				alert('Please enter item name')
+				return;
+			}
+			var label = document.createElement('div');
 			var t = document.createTextNode(text);
 			label.appendChild(t);
 			document.getElementById('widget').appendChild(label);
-			// console.log('gr8');
+			fetchPrices(label);
+		}
+		function fetchPrices(element){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function(){
+				if (this.readyState == 4 && this.status == 200) {
+		     		var response = this.responseText;
+		     		var json = JSON.parse(response);
+		     		var price = json.uk.ghs.products.results[0].price;
+		     		var unitOfSale = json.uk.ghs.products.results[0].UnitOfSale;
+		     		var unitQuantity = json.uk.ghs.products.results[0].UnitQuantity;
+
+		     		var buyDiv = document.createElement('div');
+					var buyText = document.createTextNode('Buy it here at £'+price+'/'+(unitOfSale > 1 ? unitOfSale : '')+unitQuantity);
+					buyDiv.appendChild(buyText);
+					element.appendChild(buyDiv);
+
+		     		// https://www.tesco.com/groceries/product/search/default.aspx?searchBox=cabbage&newSort=true&search=Search
+				}
+			}
+			var text = document.getElementById('ingred').value;
+			xhttp.open("GET", "https://dev.tescolabs.com/grocery/products/?query="+text+"&offset=0&limit=2", true);
+			xhttp.setRequestHeader('Ocp-Apim-Subscription-Key', '0acaa8c07fa24d86a7ccc1614432b559')
+  			xhttp.send();
 		}
 	</script>
 	<link rel="stylesheet" type="text/css" href="./styles.css">
 </head>
 <body id='container'>
-<div id='widget'>
 <div id='title'>Ingredient widget</div>
-<div style="display: flex; justify-content: center;">
+<div id='widget'>
+<div style="display: flex; justify-content: center; border-bottom: 1px solid #ccc9c9; padding-bottom: 30px">
 <input id='ingred' type="textbox" />
 <div class='button' onclick="add()">ADD INGREDIENT</div>
 </div>
