@@ -40,6 +40,10 @@
 .buy{
 	color: #ffffff;
 }
+.buyLink{
+	color: #ffffff;
+	text-decoration: none;
+}
 .item{
 	font-size: 15px;
 	display: flex;

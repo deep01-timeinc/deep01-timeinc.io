@@ -27,16 +27,20 @@
 		     		var unitQuantity = json.uk.ghs.products.results[0].ContentsMeasureType;
 
 		     		var buyDiv = document.createElement('div');
-					var buyText = document.createTextNode('Buy it here at £'+price+'/'+(unitOfSale > 1 ? unitOfSale : '')+unitQuantity);
-					buyDiv.appendChild(buyText);
+		     		var buyLink = document.createElement('a');
+		     		buyLink.href = 'https://www.tesco.com/groceries/product/search/default.aspx?searchBox='+text+'&newSort=true&search=Search';
+		     		buyDiv.appendChild(buyLink);
+					var buyText = document.createTextNode('Buy it here for £'+price+'/'+(unitOfSale > 1 ? unitOfSale : '')+unitQuantity);
+					buyLink.appendChild(buyText);
 					element.appendChild(buyDiv);
 					buyDiv.className = 'buy';
+					buyLink.className = 'buyLink';
 
 		     		// https://www.tesco.com/groceries/product/search/default.aspx?searchBox=cabbage&newSort=true&search=Search
 				}
 			}
 			var text = document.getElementById('ingred').value;
-			xhttp.open("GET", "https://dev.tescolabs.com/grocery/products/?query="+text+"&offset=0&limit=2", true);
+			xhttp.open("GET", "https://dev.tescolabs.com/grocery/products/?query="+text+"&offset=0&limit=1", true);
 			xhttp.setRequestHeader('Ocp-Apim-Subscription-Key', '0acaa8c07fa24d86a7ccc1614432b559')
   			xhttp.send();
 		}
